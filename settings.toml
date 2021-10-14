@@ -1,0 +1,17 @@
+[default]
+FLASK_APP = "application.flask_app:create_app"
+TITLE = "Application"
+SQLALCHEMY_TRACK_MODIFICATIONS = "False"
+BABEL_DEFAULT_LOCALE = "PT"
+EXTENSIONS = [
+    "application.extensions.database:init_app",
+    "application.extensions.migration:init_app",
+    "application.extensions.auth:init_app",
+    "application.extensions.commands:init_app",
+    "application.extensions.babel:init_app",
+    "application.extensions.admin:init_app",
+    "application.blueprints.user:init_app",
+]
+
+[development]
+debug = "true"

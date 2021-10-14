@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="{{ url_for('static', filename='vendor/bootstrap-5.0.2-dist/css/bootstrap.min.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='vendor/toastr/toastr.min.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='vendor/bootstrap-icons-1.5.0/bootstrap-icons.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+  <link rel="icon" href="{{ url_for('static', filename='svg/icon.svg') }}" type="image/x-icon">
+  {% block head %}{% endblock head %}
+
+  <style>
+    @font-face {
+      font-family: 'Roboto-Light';
+      src: url('{{ url_for('static', filename='fonts/Roboto/Roboto-Light.ttf') }}') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+    }
+  </style>
+
+  {% if title %}
+    <title>PyBlog - {{ title }}</title>
+  {% else %}
+    <title>PyBlog</title>
+  {% endif %}
+
+</head>
+<body>
+
+{% block content %}{% endblock content %}
+
+<script src="{{ url_for('static', filename='vendor/bootstrap-5.0.2-dist/js/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ url_for('static', filename='vendor/jquery/jquery-3.6.0.min.js') }}"></script>
+<script src="{{ url_for('static', filename='vendor/toastr/toastr.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/base.js') }}"></script>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    <script>
+      {% for category, message in messages %}
+        showToast('{{ category }}', '{{ message }}')
+      {% endfor %}
+    </script>
+  {% endif %}
+{% endwith %}
+
+{% block script %}{% endblock script %}
+</body>
+</html>
