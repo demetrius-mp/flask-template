@@ -1,3 +1,5 @@
+import warnings
+
 from flask import Flask
 from flask_admin import Admin
 from flask_admin.menu import MenuLink
@@ -22,4 +24,7 @@ def init_app(app: Flask):
     admin.name = app.config.TITLE
     admin.template_mode = "bootstrap3"
     admin.init_app(app)
-    admin.add_view(views.UserView(models.User, db.session, name='Usuários'))
+
+    with warnings.catch_warnings():
+        warnings.filterwarnings('ignore', 'Fields missing from ruleset', UserWarning)
+        admin.add_view(views.UserView(models.User, db.session, name='Usuários'))
