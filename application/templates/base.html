@@ -11,9 +11,9 @@
   {% block head %}{% endblock head %}
 
   {% if title %}
-    <title>PyBlog - {{ title }}</title>
+    <title>{{ config.title }} - {{ title }}</title>
   {% else %}
-    <title>PyBlog</title>
+    <title>{{ config.title }}</title>
   {% endif %}
 
 </head>
